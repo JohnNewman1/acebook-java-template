@@ -2,6 +2,7 @@ const React = require('react');
 const ReactDOM = require('react-dom');
 const client = require('./client');
 
+import AddPost from './posts/addpost';
 import Posts from './posts/posts'
 
 class App extends React.Component {
@@ -20,6 +21,7 @@ class App extends React.Component {
   render() {
     return (<div>
       <Posts posts={this.state.posts.reverse()}/>
+      <AddPost />
       </div>
     )
   }
