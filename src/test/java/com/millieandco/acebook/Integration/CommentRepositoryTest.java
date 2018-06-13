@@ -2,6 +2,8 @@ package com.millieandco.acebook.Integration;
 
 import com.millieandco.acebook.Post;
 import com.millieandco.acebook.PostRepository;
+import com.millieandco.acebook.Comment;
+import com.millieandco.acebook.CommentRepository;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -11,12 +13,8 @@ import org.springframework.boot.test.autoconfigure.orm.jpa.TestEntityManager;
 import org.springframework.test.context.ActiveProfiles;
 import org.springframework.test.context.junit4.SpringRunner;
 
-import static org.junit.Assert.*;
-
-import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
-import java.util.Optional;
+import static org.junit.Assert.*;
 
 import static org.springframework.boot.test.autoconfigure.jdbc.AutoConfigureTestDatabase.Replace.NONE;
 
@@ -24,13 +22,16 @@ import static org.springframework.boot.test.autoconfigure.jdbc.AutoConfigureTest
 @RunWith(SpringRunner.class)
 @DataJpaTest
 @AutoConfigureTestDatabase(replace = NONE)
-public class PostRepositoryTest {
+public class CommentRepositoryTest {
 
     @Autowired
     private TestEntityManager entityManager;
 
     @Autowired
     private PostRepository postRepository;
+
+    @Autowired
+    private CommentRepository commentRepository;
 
     @Test
     public void readsAndWritesToDatabase() {
@@ -40,13 +41,15 @@ public class PostRepositoryTest {
         entityManager.persist(firstPost);
         entityManager.flush();
 
-        Post secondPost = new Post("second post");
-        entityManager.persist(secondPost);
+        Comment comment = new Comment("great comment");
+        comment.setPost(firstPost);
+        entityManager.persist(comment);
         entityManager.flush();
 
-        List<Post> posts = postRepository.findAll();
+        List<Comment> comments = commentRepository.findAll();
 
-        assertEquals(posts.get(0).getContent(), "first post");
-        assertEquals(posts.get(1).getContent(), "second post");
+        assertEquals(comments.get(0).getComment(), "great comment");
+        assertEquals(comments.get(0).getPost(), firstPost);
+
     }
 }

@@ -6,6 +6,8 @@ import lombok.Data;
 import org.hibernate.annotations.CreationTimestamp;
 
 import java.time.LocalDate;
+import java.util.ArrayList;
+import java.util.List;
 
 @Data
 @Entity
@@ -22,6 +24,11 @@ public class Post {
     @Column(name = "created_at")
     @CreationTimestamp
     private LocalDate createdAt;
+
+    @OneToMany
+    @JoinColumn(name = "post_id")
+    private List<Comment> comments = new ArrayList<>();
+
 
 
     protected Post() {
