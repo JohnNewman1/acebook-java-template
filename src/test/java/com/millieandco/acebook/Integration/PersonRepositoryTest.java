@@ -1,7 +1,7 @@
 package com.millieandco.acebook.Integration;
 
-import com.millieandco.acebook.Post;
-import com.millieandco.acebook.PostRepository;
+import com.millieandco.acebook.Person;
+import com.millieandco.acebook.PersonRepository;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -20,30 +20,33 @@ import static org.springframework.boot.test.autoconfigure.jdbc.AutoConfigureTest
 @RunWith(SpringRunner.class)
 @DataJpaTest
 @AutoConfigureTestDatabase(replace = NONE)
-public class PostRepositoryTest {
+public class PersonRepositoryTest {
 
     @Autowired
     private TestEntityManager entityManager;
 
     @Autowired
-    private PostRepository postRepository;
+    private PersonRepository personRepository;
 
     @Test
     public void readsAndWritesToDatabase() {
-        postRepository.deleteAll();
+        personRepository.deleteAll();
 
-        Post firstPost = new Post("first post");
-        entityManager.persist(firstPost);
+        Person firstPerson = new Person("Kylo", "Ren", "kyloren@sithlord.com", "ihatejedis", "sithlord");;
+        entityManager.persist(firstPerson);
         entityManager.flush();
 
-        Post secondPost = new Post("second post");
-        entityManager.persist(secondPost);
+        Person secondPerson = new Person("Darth", "Maul", "darthmaul@sithlord.com", "ihavehorns", "sithlord2");;
+        entityManager.persist(secondPerson);
         entityManager.flush();
 
-        List<Post> posts = postRepository.findAll();
+        List<Person> people = personRepository.findAll();
 
-        assertEquals(posts.get(0).getContent(), "first post");
-        assertEquals(posts.get(1).getContent(), "second post");
+        assertEquals(people.get(0).getFirstName(), "Kylo");
+        assertEquals(people.get(0).getLastName(), "Ren");
+        assertEquals(people.get(0).getEmail(), "kyloren@sithlord.com");
+        assertEquals(people.get(1).getFirstName(), "Darth");
+        assertEquals(people.get(1).getLastName(), "Maul");
+        assertEquals(people.get(1).getEmail(), "darthmaul@sithlord.com");
     }
-
 }

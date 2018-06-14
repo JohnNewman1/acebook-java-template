@@ -1,15 +1,18 @@
 package com.millieandco.acebook;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.Data;
-import org.hibernate.annotations.CreationTimestamp;
+import lombok.ToString;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+import org.springframework.security.crypto.password.PasswordEncoder;
 
 import javax.persistence.*;
-import java.time.LocalDate;
 
 @Data
+@ToString(exclude= "password")
 @Entity
 @Table(name = "users")
-public class User {
+public class Person {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
@@ -21,25 +24,29 @@ public class User {
     @Column(name = "last_name")
     private String lastName;
 
+    @Column(name = "username")
+    private String username;
+
     @Column(name = "email")
     private String email;
 
     @Column(name = "password")
     private String password;
 
-    protected User() {
+    protected Person() {
     }
 
-    public User(String firstName, String lastName, String email, String password) {
+    public Person(String firstName, String lastName, String email, String password, String username) {
         this.firstName = firstName;
         this.lastName = lastName;
+        this.username = username;
         this.email = email;
         this.password = password;
     }
 
     @Override
     public String toString() {
-        return String.format("User[id=%d, firstName='%s', lastName='%s', email='%s', password='%s']", id, firstName, lastName, email, password);
+        return String.format("Person[id=%d, firstName='%s', lastName='%s', username='%s', email='%s']", id, firstName, lastName, username, email);
     }
 }
 

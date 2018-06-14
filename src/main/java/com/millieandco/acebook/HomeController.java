@@ -1,5 +1,6 @@
 package com.millieandco.acebook;
 
+import com.millieandco.acebook.PostRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -9,7 +10,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 public class HomeController {
 
 	@Autowired
-	PostRepository postrepository;
+    PostRepository postrepository;
 
 	@RequestMapping(value = "/")
 	public String index() {
@@ -18,6 +19,11 @@ public class HomeController {
 
 	@RequestMapping(value = "/signup")
 	public String signup() { return "index"; }
+
+	@RequestMapping(value = "/login")
+	public String login() {
+		return "index";
+	}
 
 
 }
