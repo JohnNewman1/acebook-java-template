@@ -47,7 +47,7 @@ class Post extends React.Component{
 		return (
 
         <tr>
-            <td>{this.props.post.content}<br />
+            <td class="text-area">{this.props.post.content}<br />
            <AddComments createComment={this.createComments} post={this.props.post} />
            <Comments comments={this.state.comments} />
            </td>
