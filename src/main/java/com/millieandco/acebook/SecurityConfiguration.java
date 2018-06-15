@@ -19,6 +19,13 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
     private SpringDataJpaUserDetailsService userDetailsService;
 
     @Override
+    protected void configure(AuthenticationManagerBuilder auth) throws Exception {
+        auth
+                .userDetailsService(this.userDetailsService)
+                .passwordEncoder(Person.PASSWORD_ENCODER);
+    }
+
+    @Override
     protected void configure(HttpSecurity http) throws Exception {
         http.csrf().disable()
             .authorizeRequests()

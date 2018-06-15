@@ -25,6 +25,9 @@ public class Post {
     @CreationTimestamp
     private LocalDate createdAt;
 
+    @Column(name = "likes")
+    private long likes;
+
     @OneToMany
     @JoinColumn(name = "post_id")
     private List<Comment> comments = new ArrayList<>();
@@ -36,6 +39,7 @@ public class Post {
 
     public Post(String comment) {
         this.content = comment;
+        this.likes = 0;
     }
 
     @Override
