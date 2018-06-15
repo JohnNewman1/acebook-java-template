@@ -23,12 +23,14 @@ class AddComments extends React.Component {
 
   render() {
     return (
-      <form onSubmit={this.handleSubmit} >
+    <div>
+      <textarea form="comment-form" type="text" placeholder = "Add New Comment" onChange={this.handleChange} value={this.state.value}></textarea>
+      <form id="comment-form" onSubmit={this.handleSubmit} >
         <div className="col-md-4 goback">
-          <input className="comment-input" type="text" placeholder = "Add New Comment" onChange={this.handleChange} value={this.state.value} required />
-          <input type="submit" value="Submit" />
-       </div>
-      </form>
+           <input type="submit" value="Submit" />
+         </div>
+       </form>
+    </div>
     );
   }
 }

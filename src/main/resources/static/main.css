@@ -6,6 +6,7 @@ td, th {
     border: 1px solid #999;
     padding: 0.5rem;
     text-align: left;
+
 }
 
 .sign {
@@ -35,4 +36,8 @@ margin-right: 10px;
 
 .goback {
     position: static;
+}
+
+.text-area {
+    white-space: pre-wrap;
 }

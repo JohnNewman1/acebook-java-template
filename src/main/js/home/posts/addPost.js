@@ -22,14 +22,16 @@ class AddPost extends React.Component {
 
   render() {
     return (
-      <form onSubmit={this.handleSubmit} >
-        <div className="col-md-6 goback">
-        <input className="post-input" type="text" placeholder = "Add New Post" onChange={this.handleChange} value={this.state.value} required />
-        <input type="submit" value="Submit" />
-       </div>
-      </form>
-    );
-  }
+            <div>
+              <textarea form="comment-form" type="text" placeholder = "What do you want to say?..." onChange={this.handleChange} value={this.state.value}></textarea>
+              <form id="post-form" onSubmit={this.handleSubmit} >
+                <div className="col-md-4 goback">
+                   <input type="submit" value="Submit" />
+                 </div>
+               </form>
+            </div>
+            );
+          }
 }
 
 AddPost.defaultProps = {};
