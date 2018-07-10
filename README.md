@@ -59,6 +59,18 @@ So people can access Acebook
 I would like to deploy my project
 
 ```
+
+## Approach
+
+#### UML Diagrams 
+
+**API**
+
+![Spring Boot](./SpringBootAPI.png)
+
+**React**
+
+![React](./ReactUML.png)
 ## Website
 
 http://acebook-millieandco.herokuapp.com/
