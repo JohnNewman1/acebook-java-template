@@ -21,7 +21,7 @@ module.exports = {
       .click('input.submit')
 
     client
-      .url("http://localhost:8080/api/users")
+      .url("http://localhost:8080")
       .assert.containsText('pre', `"firstName" : "Luke",
       "lastName" : "Sky Walker",
       "email" : "luke@jedi.com",

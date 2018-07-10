@@ -14,6 +14,8 @@ import javax.persistence.*;
 @Table(name = "users")
 public class Person {
 
+    public static final PasswordEncoder PASSWORD_ENCODER = new BCryptPasswordEncoder();
+
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private long id;
@@ -27,11 +29,15 @@ public class Person {
     @Column(name = "username")
     private String username;
 
-    @Column(name = "email")
+    @Column(name = "email", unique = true)
     private String email;
 
-    @Column(name = "password")
+    @Column(name = "password", unique = true)
     private String password;
+
+    public void setPassword(String password) {
+        this.password = PASSWORD_ENCODER.encode(password);
+    }
 
     protected Person() {
     }
@@ -41,7 +47,7 @@ public class Person {
         this.lastName = lastName;
         this.username = username;
         this.email = email;
-        this.password = password;
+        this.setPassword(password);
     }
 
     @Override

@@ -1,4 +1,5 @@
 import React from 'react';
+
 import Header from '../home/header'
 
  class Login extends React.Component {
@@ -14,7 +15,7 @@ import Header from '../home/header'
               <input className="form-control" type="text" name="username" />
               <br />
               <label>Password:</label>
-              <input className="form-control" type="password" name="password" />
+              <input className="form-control" typ="password" name="password" />
               <br />
               <input type="submit" value="Login" />
             </form>
@@ -27,3 +28,4 @@ import Header from '../home/header'
 }
 
 export default Login;
+
